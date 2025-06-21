@@ -35,4 +35,15 @@ public class UserService {
 		userRepository.delete(user);
 	}
 
+	public UserDTO login(String email, String senha) {
+		User user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("Email não encontrado"));
+
+		if (!user.getSenha().equals(senha)) {
+			throw new RuntimeException("Senha incorreta");
+		}
+
+		return new UserDTO(user);
+
+	}
+
 }
