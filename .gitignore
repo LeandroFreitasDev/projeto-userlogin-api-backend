@@ -19,6 +19,10 @@ target/
 *.iml
 *.ipr
 
+# Ignorar o banco H2 local
+*.mv.db
+*.trace.db
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
