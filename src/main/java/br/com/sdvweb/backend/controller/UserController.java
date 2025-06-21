@@ -37,15 +37,21 @@ public class UserController {
 
 	@PutMapping("/{id}")
 	public ResponseEntity<UserDTO> alterar(@PathVariable Long id, @Valid @RequestBody UserDTO usuario) {
-	    usuario.setId(id);
-	    UserDTO atualizado = userService.alterar(usuario);
-	    return ResponseEntity.ok(atualizado);
+		usuario.setId(id);
+		UserDTO atualizado = userService.alterar(usuario);
+		return ResponseEntity.ok(atualizado);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> excluir(@PathVariable("id") Long id) {
 		userService.excluir(id);
 		return ResponseEntity.ok().build();
+	}
+
+	@PostMapping("/login")
+	public ResponseEntity<UserDTO> login(@Valid @RequestBody UserDTO usuario) {
+		UserDTO userLogado = userService.login(usuario.getEmail(), usuario.getSenha());
+		return ResponseEntity.ok(userLogado);
 	}
 
 }
